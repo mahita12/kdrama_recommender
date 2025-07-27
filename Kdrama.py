@@ -5,7 +5,8 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 from PIL import Image
 import base64
-
+import os
+from dotenv import load_dotenv
 
 st.set_page_config(page_title="Kdrama Recommender", layout="centered")
 
@@ -80,12 +81,15 @@ div[data-baseweb="select"] * {
 </style>
 """, unsafe_allow_html=True)
 
+load_dotenv()
+token = os.getenv("token")
+
 # API CALL
 url = "https://api.themoviedb.org/3/discover/tv"
 
 headers = {
 
-    "Authorization" : "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2ODNlOGUzZGZjMjNmMWI1ZWVmNGRhZWM3NDQxYzUxMyIsIm5iZiI6MTc1MjE5MTEyMy41NDIsInN1YiI6IjY4NzA1MDkzNjVlNjlmNDUxNWJhMmIwNiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.QhPI8kgfYTPUohySWlPTuDFMAkKktVKxNINQiTgR-Bw",
+    "Authorization" : f"Bearer {token}",
     "accept": "application/json"
 
 }
